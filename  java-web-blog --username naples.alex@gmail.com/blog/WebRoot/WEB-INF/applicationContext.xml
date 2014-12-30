@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<!-- 数据库 -->
+	<bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost/db_blog?useUnicode=true&amp;characterEncoding=utf-8</value>
+		</property> 
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>123456</value>
+		</property>
+	</bean>
+	
+    <!-- 定义SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">
+                    org.hibernate.dialect.MySQLDialect
+                </prop>
+                <prop key="hibernate.blog_sql">false</prop>
+            </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>com/blog/po/User.hbm.xml</value>
+                <value>com/blog/po/Article.hbm.xml</value>
+                <value>com/blog/po/BlogInfo.hbm.xml</value>
+                <value>com/blog/po/Critique.hbm.xml</value>
+                <value>com/blog/po/ViewRate.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- 定义HibernateTemplate -->
+    <bean id = "hibernateTemplate" class = "org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name = "sessionFactory">
+            <ref bean = "sessionFactory"/>
+        </property>
+    </bean>
+
+	<!-- DAO层 -->
+	<!-- ArticleDAO -->
+	<bean id = "articleDAO" class = "com.blog.dao.ArticleDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	
+	<!-- BlogInfoDAO -->
+	<bean id = "blogInfoDAO" class = "com.blog.dao.BlogInfoDAOImpl">
+		<property name = "hibernateTemplate">
+			<ref bean = "hibernateTemplate" />
+		</property>
+	</bean>
+	
+	<!-- CritiqueDAO -->
+	<bean id = "critiqueDAO" class = "com.blog.dao.CritiqueDAOImpl">
+		<property name = "hibernateTemplate">
+			<ref bean = "hibernateTemplate" />
+		</property>
+	</bean>
+	
+	<!-- UserDAO -->
+	<bean id = "userDAO" class = "com.blog.dao.UserDAOImpl">
+		<property name = "hibernateTemplate">
+			<ref bean = "hibernateTemplate" />
+		</property>
+	</bean>
+	
+	<!-- viewRateDAO -->
+	<bean id = "viewRateDAO" class = "com.blog.dao.ViewRateDAOImpl">
+		<property name = "hibernateTemplate">
+			<ref bean = "hibernateTemplate" />
+		</property>
+	</bean>
+	
+	<!-- service层 -->
+	<!-- articleService -->
+	<bean id = "articleService" class = "com.blog.service.ArticleServiceImpl">
+		<property name="articleDAO">
+			<ref bean="articleDAO"/>
+		</property>
+		<property name="critiqueDAO">
+			<ref bean="critiqueDAO"/>
+		</property>
+	</bean>
+	
+	<!-- blogInfoService -->
+	<bean id = "blogInfoService" class = "com.blog.service.BlogInfoServiceImpl">
+		<property name="blogInfoDAO">
+			<ref bean="blogInfoDAO"/>
+		</property>
+	</bean>
+	
+	<!-- CritiqueService -->
+    <bean id = "critiqueService" class = "com.blog.service.CritiqueServiceImpl">
+        <property name="critiqueDAO">
+            <ref bean="critiqueDAO"/>
+        </property>
+    </bean>	
+    
+    <!-- ViewRateService -->
+    <bean id = "viewRateService" class = "com.blog.service.ViewRateServiceImpl">
+        <property name = "viewRateDAO">
+            <ref bean = "viewRateDAO"/>
+        </property>
+    </bean>
+
+    <!-- UserService -->
+    <bean id="userService" class="com.blog.service.UserServiceImpl">
+		<property name="userDAO">
+			<ref bean="userDAO"/>
+		</property>
+	</bean>
+	
+    <!-- Action层 -->
+    <!-- 配置RegisterAction -->
+    <bean id="registerAction" class="com.blog.action.Register" scope="prototype">
+        <property name="userService">
+            <ref bean="userService"/>
+        </property>
+    </bean>
+    
+    <!-- 配置LoginAction -->
+    <bean id="loginAction" class="com.blog.action.Login" scope="prototype">
+        <property name="userService">
+            <ref bean="userService"/>
+        </property>
+    </bean>
+    
+    <!-- 配置EditBlogInfo Action -->
+    <bean id="editeBlogInfo" class="com.blog.action.EditBlogInfo" scope="prototype">
+        <property name="blogInfoService">
+            <ref bean="blogInfoService"/>
+        </property>
+    </bean>
+    
+    <!-- 配置GetBlogInfo Action -->
+    <bean id="GetBlogInfo" class="com.blog.action.GetBlogInfo" scope="prototype">
+        <property name="blogInfoService">
+            <ref bean="blogInfoService"/>
+        </property>
+    </bean>
+
+    <!-- ShowUserAllArticle Action -->
+    <bean id="showUserAllArticle" class="com.blog.action.ShowUserAllArticle" scope="prototype">
+        <property name="articleService">
+            <ref bean="articleService"/>
+        </property>
+    </bean>
+    
+    <!-- ShowAllArticle Action -->
+    <bean id="showAllArticle" class="com.blog.action.ShowAllArticle" scope="prototype">
+        <property name="articleService">
+            <ref bean="articleService"/>
+        </property>
+    </bean>
+
+    <!-- AddCritique Action -->
+    <bean id="addCritique" class="com.blog.action.AddCritique" scope="prototype">
+        <property name="critiqueService">
+            <ref bean="critiqueService"/>
+        </property>
+    </bean>
+    
+    <!-- ShowArticle Action -->
+    <bean id = "showArticle" class = "com.blog.action.ShowArticle" scope="prototype">
+        <property name = "articleService">
+            <ref bean = "articleService"/>
+        </property>
+        <property name = "viewRateService">
+            <ref bean = "viewRateService"/>
+        </property>
+        <property name="critiqueService">
+            <ref bean="critiqueService"/>
+        </property>
+        <property name="blogInfoService">
+            <ref bean="blogInfoService"/>
+        </property>
+    </bean>
+    
+    <!-- ShowRss Action -->
+    <bean id="showRSS" class="com.blog.action.ShowRSS" scope="prototype">
+        <property name="articleService">
+            <ref bean="articleService"/>
+        </property>
+    </bean>
+    
+    <!-- AddArticle Action -->
+	<bean id="addArticle" class="com.blog.action.AddArticle" scope="prototype">
+		<property name="articleService">
+			<ref bean="articleService"/>
+		</property>
+	</bean>
+</beans>
