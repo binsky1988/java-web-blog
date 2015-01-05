@@ -2,6 +2,7 @@ package com.blog.service;
 
 import java.util.List;
 
+import com.blog.action.UpdateArticle;
 import com.blog.page.Page;
 import com.blog.page.Result;
 import com.blog.po.Article;
@@ -24,4 +25,7 @@ public interface ArticleService {
     
     //获得评论数
     public int getCritiqueCount(int AId);
+    
+    //更新文章
+    public Article updateArticle(String username, int id);
 }

@@ -204,4 +204,11 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 			<ref bean="articleService"/>
 		</property>
 	</bean>
+	
+	<!-- UpdateArticle Action -->
+	<bean id="updateArticle" class="com.blog.action.UpdateArticle" scope="prototype">
+		<property name="articleService">
+			<ref bean="articleService"/>
+		</property>
+	</bean>
 </beans>

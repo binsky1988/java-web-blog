@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=gb2312"
-	pageEncoding="gb2312"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.fckeditor.net" prefix="FCK"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>ฮาตฤฮฤีย</title>
+<title>ๆ‘็ๆ–็ซ </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link type="text/css" rel="stylesheet" href="../css/main.css" media="all" />
 <!--[if IE 6]><link type="text/css" rel="stylesheet" href="css/ie6.css" media="all" /><![endif]-->
@@ -16,18 +16,18 @@
 <div id="wrapper">
   <div id="container">
     <div id="scene"> c<img src="../images/scene.jpg" alt="" />
-       <h1>${empty sessionScope.blogtitle ? "ฒฉฟออ๘ีพฯตอณ":sessionScope.blogtitle} <br/>
-      		<font size="8">${empty sessionScope.idiograph ? "ฮาตฤวฉร๛":sessionScope.idiograph}</font>
+       <h1>${empty sessionScope.blogtitle ? "ๅๅฎข็ฝ‘็ซ็ณป็ป":sessionScope.blogtitle} <br/>
+      		<font size="8">${empty sessionScope.idiograph ? "ๆ‘็็ญพๅ":sessionScope.idiograph}</font>
       		</h1>
       <div id="scale_area">
         <div id="scale_knob">&raquo; Font Size &laquo;</div>
       </div>
       <div id="menu">
-         <div class="holder"> <a href="../showAllArticle.action">ฒฉฟอสืาณ</a> </div>
-        <div class="holder"> <a href="showUserAllArticle.action">ำรปงสืาณ</a> </div>
-        <div class="holder"> <a href="editbloginfo.jsp">ธ๖ะิปฏษ่ึร</a> </div>
-        <div class="holder"> <a href="addArticle.jsp">ะดศีึพ</a> </div>
-        <div class="holder"> <a href="showPhoto.action">ฯเฒแ</a> </div>
+         <div class="holder"> <a href="../showAllArticle.action">ๅๅฎข้ฆ–้กต</a> </div>
+        <div class="holder"> <a href="showUserAllArticle.action">็”จๆท้ฆ–้กต</a> </div>
+        <div class="holder"> <a href="editbloginfo.jsp">ไธชๆ€งๅ–่ฎพ็ฝฎ</a> </div>
+        <div class="holder"> <a href="addArticle.jsp">ๅๆ—ฅๅฟ—</a> </div>
+        <div class="holder"> <a href="showPhoto.action">็ธๅ</a> </div>
       </div>
     </div>
     <div id="content">
@@ -46,40 +46,40 @@
             </div>
             </div>
           </div>
-        <!-- ัญปทสไณ๖ -->
+        <!-- ๅพช็ฏ่พ“ๅบ -->
         <s:set name="loushu" value="#request.page.beginIndex"></s:set>
         <s:iterator value="#request.allCri" id="cri">
         <s:set name="loushu" value="#loushu + 1"></s:set>
           <div class="comments">
             <div class="comment">
               <div class="meta"><span><s:property value="#cri.content" escape="false"/></span>
-                <div class="clear"><span class="datetime">ื๗ี฿:<s:property value="#cri.username"/></span></div>
+                <div class="clear"><span class="datetime">ไฝ่€…:<s:property value="#cri.username"/></span></div>
               </div>
             </div>
           </div>
 		 </s:iterator>
 		  <div class="comment" align="center">
-		  	ตฑวฐตฺ${page.currentPage}าณฃฌนฒ${page.totalPage}าณฃฌรฟาณฯิสพ${page.everyPage}ฬ๕ผวยผ
+		  	ๅฝ“ๅ็ฌฌ${page.currentPage}้กต๏ผๅ…ฑ${page.totalPage}้กต๏ผๆฏ้กตๆพ็คบ${page.everyPage}ๆก่ฎฐๅฝ•
 			<s:if test="#request.page.hasPrePage">
-				<a href="showArticle.action?id=${requestScope.article.id}&currentPage=1">สืาณ</a>
-				<a href="showArticle.action?id=${requestScope.article.id}&currentPage=${page.currentPage -1 }">ษฯาปาณ</a>
+				<a href="showArticle.action?id=${requestScope.article.id}&currentPage=1">้ฆ–้กต</a>
+				<a href="showArticle.action?id=${requestScope.article.id}&currentPage=${page.currentPage -1 }">ไธไธ€้กต</a>
 			</s:if>
 			<s:else>
-				สืาณ
-				ษฯาปาณ
+				้ฆ–้กต
+				ไธไธ€้กต
 			</s:else>
 			
 			<s:if test="#request.page.hasNextPage">
-				<a href="showArticle.action?id=${requestScope.article.id}&currentPage=${page.currentPage + 1 }">ฯยาปาณ</a>
-				<a href="showArticle.action?id=${requestScope.article.id}&currentPage=${page.totalPage }">ฮฒาณ</a>			
+				<a href="showArticle.action?id=${requestScope.article.id}&currentPage=${page.currentPage + 1 }">ไธไธ€้กต</a>
+				<a href="showArticle.action?id=${requestScope.article.id}&currentPage=${page.totalPage }">ๅฐพ้กต</a>			
 			</s:if>
 			<s:else>
-				ฯยาปาณ
-				ฮฒาณ
+				ไธไธ€้กต
+				ๅฐพ้กต
 			</s:else>
 		  </div>
 		  <div class="comment">
-		  	<h2>ทขฑํฦภยÛ</h2>
+		  	<h2>ๅ‘่กจ่ฏ่ฎบ</h2>
             <form class="h" action="addCritique.action" method="post">
             <input type="hidden" name="id" value='${requestScope.article.id }'/>
               <div>
@@ -90,7 +90,7 @@
                 <div class="clear"> </div>
               </div>
               <div class="button_wrapper">
-                <input name="ฬแฝป" type="submit" class="button" value="ฬแฝป" />
+                <input name="ๆไบค" type="submit" class="button" value="ๆไบค" />
               </div>
             </form>
 		  </div>
@@ -109,13 +109,13 @@
           </form>
         </div>
         <div id="sidebar">
-          <h2>าณรๆตผบฝ</h2>
+          <h2>้กต้ขๅฏผ่ช</h2>
           <ul>
-            <li><a href="../showAllArticle.action">ฒฉฟอสืาณ</a></li>
-        	<li><a href="showUserAllArticle.action">ำรปงสืาณ</a></li>
-        	<li><a href="editbloginfo.jsp">ธ๖ะิปฏษ่ึร</a></li>
-        	<li><a href="addArticle.jsp">ะดศีึพ</a></li>
-       		<li><a href="showPhoto.action">ฯเฒแ</a></li>
+            <li><a href="../showAllArticle.action">ๅๅฎข้ฆ–้กต</a></li>
+        	<li><a href="showUserAllArticle.action">็”จๆท้ฆ–้กต</a></li>
+        	<li><a href="editbloginfo.jsp">ไธชๆ€งๅ–่ฎพ็ฝฎ</a></li>
+        	<li><a href="addArticle.jsp">ๅๆ—ฅๅฟ—</a></li>
+       		<li><a href="showPhoto.action">็ธๅ</a></li>
           </ul>
         </div>
       </div>
@@ -124,7 +124,7 @@
     <div id="footer">
       <div class="clear"> </div>
       <hr />
-      <p class="credit">ฒฉฟออ๘ีพฯตอณ</p>
+      <p class="credit">ๅๅฎข็ฝ‘็ซ็ณป็ป</p>
     </div>
   </div>
 </body>

@@ -1,114 +1,119 @@
-<%@ page language="java" contentType="text/html; charset=gb2312"
-	pageEncoding="gb2312"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>ÎÒµÄÈ«²¿ÎÄÕÂ</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="../css/main.css" media="all" />
-<!--[if IE 6]><link type="text/css" rel="stylesheet" href="css/ie6.css" media="all" /><![endif]-->
-<script type="text/javascript" src="../js/mootools.js"></script>
-<script type="text/javascript" src="../js/site.js"></script>
+	<title>æˆ‘çš„å…¨éƒ¨æ–‡ç« </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../css/main.css" media="all" />
+	<!--[if IE 6]><link type="text/css" rel="stylesheet" href="css/ie6.css" media="all" /><![endif]-->
+	<script type="text/javascript" src="../js/mootools.js"></script>
+	<script type="text/javascript" src="../js/site.js"></script>
 </head>
 <body>
 <div id="wrapper">
-  <div id="container">
-    <div id="scene"> c<img src="../images/scene.jpg" alt="" />
-       <h1>${empty sessionScope.blogtitle ? "²©¿ÍÍøÕ¾ÏµÍ³":sessionScope.blogtitle} <br/>
-      		<font size="8">${empty sessionScope.idiograph ? "ÎÒµÄÇ©Ãû":sessionScope.idiograph}</font>
+	<div id="container">
+    	<div id="scene"> c<img src="../images/scene.jpg" alt="" />
+       		<h1>${empty sessionScope.blogtitle ? "åšå®¢ç½‘ç«™ç³»ç»Ÿ":sessionScope.blogtitle} <br/>
+      			<font size="8">${empty sessionScope.idiograph ? "æˆ‘çš„ç­¾å":sessionScope.idiograph}</font>
       		</h1>
-      <div id="scale_area">
-        <div id="scale_knob">&raquo; Font Size &laquo;</div>
-      </div>
-      <div id="menu">
-         <div class="holder"> <a href="../showAllArticle.action">²©¿ÍÊ×Ò³</a> </div>
-        <div class="holder"> <a href="showUserAllArticle.action">ÓÃ»§Ê×Ò³</a> </div>
-        <div class="holder"> <a href="editbloginfo.jsp">¸öĞÔ»¯ÉèÖÃ</a> </div>
-        <div class="holder"> <a href="addArticle.jsp">Ğ´ÈÕÖ¾</a> </div>
-        <div class="holder"> <a href="showPhoto.action">Ïà²á</a> </div>
-      </div>
-    </div>
-    <div id="content">
-      <div id="col_left">
-        <div class="post">
-          <div class="meta"><a class="title" href="">ÎÒµÄÈ«²¿ÎÄÕÂ</a>
-            <div class="clear"></div>
-          </div>
-        <!-- Ñ­»·Êä³ö -->
-		<s:iterator value="#request.all" id="art" status="sta">
-          <div class="comments">
-            <div class="comment">
-              <div class="meta"> <span><a href="showArticle.action?username=<s:property value='#art.username'/>&id=<s:property value='#art.id'/>"><s:property value="#art.title"/></a> <small>:</small></span>
-                <div class="clear"> </div>
-              </div>
-            </div>
-            <div class="comment alt">
-              <div class="meta"><span class="datetime">
-              	<!-- ·¢±íÊ±¼ä -->
-														·¢±íÓÚ:
+      		<div id="scale_area">
+        		<div id="scale_knob">&raquo; Font Size &laquo;</div>
+      		</div>
+      		<div id="menu">
+        		<div class="holder"> <a href="../showAllArticle.action">åšå®¢é¦–é¡µ</a> </div>
+        		<div class="holder"> <a href="showUserAllArticle.action">ç”¨æˆ·é¦–é¡µ</a> </div>
+        		<div class="holder"> <a href="editbloginfo.jsp">ä¸ªæ€§åŒ–è®¾ç½®</a> </div>
+        		<div class="holder"> <a href="addArticle.jsp">å†™æ—¥å¿—</a> </div>
+        		<div class="holder"> <a href="showPhoto.action">ç›¸å†Œ</a> </div>
+      		</div>
+    	</div>
+		<div id="content">
+      		<div id="col_left">
+        		<div class="post">
+          			<div class="meta"><a class="title" href="">æˆ‘çš„å…¨éƒ¨æ–‡ç« </a>
+            			<div class="clear"></div>
+          			</div>
+        			<!-- å¾ªç¯è¾“å‡º -->
+					<s:iterator value="#request.all" id="art" status="sta">
+          				<div class="comments">
+            				<div class="comment">
+              					<div class="meta"> <span><a href="showArticle.action?username=<s:property value='#art.username'/>&id=<s:property value='#art.id'/>"><s:property value="#art.title"/></a> <small>:</small></span>
+                					<div class="clear"> </div>
+              					</div>
+              					<form class = "h" action = "updateArticle.jsp?username=<s:property value="#art.username"/>&id=<s:property value="#art.id"/>&title=<s:property value="#art.title"/>&content=<s:property value="#art.content"/>" method = "post">
+              						<div class = "button_wrapper">
+										<input name = "ä¿®æ”¹" type = "submit" class="button" value = "ä¿®æ”¹" />
+									</div>
+              					</form>
+            				</div>
+            				<div class="comment alt">
+              					<div class="meta"><span class="datetime">
+              						<!-- å‘è¡¨æ—¶é—´ -->
+														å‘è¡¨äº:
 														<s:date name="#art.date"/>
-														<!-- ÆÀÂÛÓëµã»÷Êı -->
-														|ÆÀÂÛ(<s:property value="#request.critiqueCounts[#sta.index]"/>)|µã»÷(<s:property value="#art.hasread"/>)
-              </span>
-                <div class="clear"> </div>
-              </div>
-            </div>
-          </div>
-		 </s:iterator>
-		  <div class="comment" align="center">
-		  	µ±Ç°µÚ${page.currentPage}Ò³£¬¹²${page.totalPage}Ò³£¬Ã¿Ò³ÏÔÊ¾${page.everyPage}Ìõ¼ÇÂ¼
-			<s:if test="#request.page.hasPrePage">
-				<a href="showUserAllArticle.action?currentPage=1">Ê×Ò³</a>
-				<a href="showUserAllArticle.action?currentPage=${page.currentPage -1 }">ÉÏÒ»Ò³</a>
-			</s:if>
-			<s:else>
-				Ê×Ò³
-				ÉÏÒ»Ò³
-			</s:else>
+														<!-- è¯„è®ºä¸ç‚¹å‡»æ•° -->
+														|è¯„è®º(<s:property value="#request.critiqueCounts[#sta.index]"/>)|ç‚¹å‡»(<s:property value="#art.hasread"/>)
+              					</span>
+                				<div class="clear"> </div>
+              					</div>
+            				</div>
+          				</div>
+		 			</s:iterator>
+		  			<div class="comment" align="center">
+		  				å½“å‰ç¬¬${page.currentPage}é¡µï¼Œå…±${page.totalPage}é¡µï¼Œæ¯é¡µæ˜¾ç¤º${page.everyPage}æ¡è®°å½•
+						<s:if test="#request.page.hasPrePage">
+							<a href="showUserAllArticle.action?currentPage=1">é¦–é¡µ</a>
+							<a href="showUserAllArticle.action?currentPage=${page.currentPage -1 }">ä¸Šä¸€é¡µ</a>
+						</s:if>
+						<s:else>
+							é¦–é¡µ
+							ä¸Šä¸€é¡µ
+						</s:else>
 			
-			<s:if test="#request.page.hasNextPage">
-				<a href="showUserAllArticle.action?currentPage=${page.currentPage + 1 }">ÏÂÒ»Ò³</a>
-				<a href="showUserAllArticle.action?currentPage=${page.totalPage }">Î²Ò³</a>			
-			</s:if>
-			<s:else>
-				ÏÂÒ»Ò³
-				Î²Ò³
-			</s:else>
-		  </div>
-        </div>
+						<s:if test="#request.page.hasNextPage">
+							<a href="showUserAllArticle.action?currentPage=${page.currentPage + 1 }">ä¸‹ä¸€é¡µ</a>
+							<a href="showUserAllArticle.action?currentPage=${page.totalPage }">å°¾é¡µ</a>			
+						</s:if>
+						<s:else>
+							ä¸‹ä¸€é¡µ
+							å°¾é¡µ
+						</s:else>
+		  			</div>
+      		</div>
       </div>
-      <div id="col_right">
-        <div id="search_box">
-          <form action="" method="post">
-            <div>
-              <input type="text" name="search" />
-            </div>
-            <div class="button_wrapper">
-              <input type="submit" value="Search" class="button" />
-            </div>
-            <div class="clear"> </div>
-          </form>
-        </div>
+      		<div id="col_right">
+        		<div id="search_box">
+          			<form action="" method="post">
+            			<div>
+              				<input type="text" name="search" />
+            			</div>
+            			<div class="button_wrapper">
+              				<input type="submit" value="Search" class="button" />
+            			</div>
+            			<div class="clear"> </div>
+          			</form>
+        		</div>
         <div id="sidebar">
-          <h2>Ò³Ãæµ¼º½</h2>
+          <h2>é¡µé¢å¯¼èˆª</h2>
           <ul>
-             <li><a href="../showAllArticle.action">²©¿ÍÊ×Ò³</a></li>
-        	<li><a href="showUserAllArticle.action">ÓÃ»§Ê×Ò³</a></li>
-        	<li><a href="editbloginfo.jsp">¸öĞÔ»¯ÉèÖÃ</a></li>
-        	<li><a href="addArticle.jsp">Ğ´ÈÕÖ¾</a></li>
-       		<li><a href="showPhoto.action">Ïà²á</a></li>
+             <li><a href="../showAllArticle.action">åšå®¢é¦–é¡µ</a></li>
+        	<li><a href="showUserAllArticle.action">ç”¨æˆ·é¦–é¡µ</a></li>
+        	<li><a href="editbloginfo.jsp">ä¸ªæ€§åŒ–è®¾ç½®</a></li>
+        	<li><a href="addArticle.jsp">å†™æ—¥å¿—</a></li>
+       		<li><a href="showPhoto.action">ç›¸å†Œ</a></li>
           </ul>
         </div>
-      </div>
-      <div class="clear"> </div>
-    </div>
-    <div id="footer">
-      <div class="clear"> </div>
-      <hr />
-      <p class="credit">²©¿ÍÍøÕ¾ÏµÍ³</p>
-    </div>
-  </div>
+      	</div>
+      		<div class="clear"> </div>
+    	</div>
+		<div id="footer">
+      		<div class="clear"> </div>
+      		<hr />
+      		<p class="credit">åšå®¢ç½‘ç«™ç³»ç»Ÿ</p>
+    	</div>
+	</div>
 </div>
 </body>
 </html>

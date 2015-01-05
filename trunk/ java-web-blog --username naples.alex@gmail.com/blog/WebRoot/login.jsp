@@ -21,7 +21,7 @@
                     <div id = "scale_knob">&raquo; Font Size &laquo;</div>
                 </div>
                 <div id = "menu">
-                    <div class = "holder"> <a href = "showAllArticle.action">博客首页</a></div>
+                    <div class = "holder"> <a href = "updateArticle.action">博客首页</a></div>
                     <div class = "holder"> <a href = "register.jsp">新博客注册</a></div>
                     <div class = "holder"> <a href = "login.jsp">博客登录</a></div>
                 </div>

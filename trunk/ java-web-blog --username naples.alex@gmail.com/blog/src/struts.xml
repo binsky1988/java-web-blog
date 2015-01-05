@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <constant name="struts.i18n.encoding" value = "gb2312"></constant>
+    <constant name="struts.i18n.encoding" value = "UTF-8"></constant>
 	<constant name="struts.custom.i18n.resources" value = "myMessage"></constant>
 	<constant name="struts.objectFactory" value="spring" />
 	<package name="struts2" extends="struts-default">
@@ -48,12 +48,22 @@
 			<result name="input">/register.jsp</result>
 		</action>
 		
+		<action name="updateArticle" class="updateArticle">
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/register.jsp</result>
+		</action>
+		
 		<action name = "showAllArticle" class = "showAllArticle">
 			<result name = "success">/showAllArticle.jsp</result>
 		</action>
 		
 		<action name = "showArticle" class = "showArticle">
 			<result name = "success">/user/showArticle.jsp</result>
+		</action>
+		
+		<action name = "updateArticle" class = "updateArticle">
+			<result name="success" type="chain">showArticle</result>
 		</action>
 		
 		<action name="photoUpload" class="com.blog.action.PhotoUpload">
