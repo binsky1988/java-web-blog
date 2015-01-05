@@ -72,4 +72,9 @@ public class ArticleServiceImpl implements ArticleService {
     public int getCritiqueCount(int AId) {
         return critiqueDAO.queryCritiqueCount(AId);
     }
+    
+    //╦Эпбндуб
+    public Article updateArticle(String username, int id) {
+        return articleDAO.updateArticle(username, id);
+    }
 }

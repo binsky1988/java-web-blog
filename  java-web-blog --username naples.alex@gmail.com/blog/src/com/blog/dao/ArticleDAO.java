@@ -27,6 +27,6 @@ public interface ArticleDAO {
     //按ID查询文章
     public Article queryById(int id);
     
-    //按用户名和文章标题查询文章
-    public Article queryByTitle(String username, String title);
+    //更新文章
+    public Article updateArticle(String username, int id);
 }

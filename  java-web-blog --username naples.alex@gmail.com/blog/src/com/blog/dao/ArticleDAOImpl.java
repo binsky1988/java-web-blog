@@ -37,7 +37,7 @@ public class ArticleDAOImpl extends HibernateDaoSupport implements ArticleDAO {
 	public List<Article> queryByPage(final String username, final Page page) {
         return this.getHibernateTemplate().executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-			    Query query = session.createQuery("select art from Article art where art.username = ?");
+			    Query query = session.createQuery("select art from Article art where art.username = ? order by art.date desc");
                 //设置参数
                 query.setParameter(0, username);
                 //设置每页显示多少个，设置多大结果
@@ -78,21 +78,21 @@ public class ArticleDAOImpl extends HibernateDaoSupport implements ArticleDAO {
     }
     
     //按用户名和文章标题查询文章
-    public Article queryByTitle(String username, String title) {
-    	Article article = new Article();
+    public Article updateArticle(String username, int id) {
+        Article article = new Article();
         List list = this.getHibernateTemplate().executeFind(new HibernateCallback() {
             public Object doInHibernate(Session session) throws HibernateException, SQLException {
-                Query query = session.createQuery("select art from Article art where art.username = ? and art.title = ?");
+                Query query = session.createQuery("select art from Article art where art.username = ? and art.id = ?");
                 //设置参数
                 query.setParameter(0, username);
-                query.setParameter(1, title);
+                query.setParameter(1, id);
                 
                 return query.list();
             }
         });
         
-        for(int i=0; i < list.size(); i++){
-        	  article = (Article)list.get(i);
+        for (Iterator ite = list.iterator(); ite.hasNext();) {
+            article = (Article) ite.next();
         }
         
         return article;
