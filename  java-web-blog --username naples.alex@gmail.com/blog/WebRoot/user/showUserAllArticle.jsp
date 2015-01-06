@@ -42,11 +42,16 @@
               					<div class="meta"> <span><a href="showArticle.action?username=<s:property value='#art.username'/>&id=<s:property value='#art.id'/>"><s:property value="#art.title"/></a> <small>:</small></span>
                 					<div class="clear"> </div>
               					</div>
-              					<form class = "h" action = "updateArticle.jsp?username=<s:property value="#art.username"/>&id=<s:property value="#art.id"/>&title=<s:property value="#art.title"/>&content=<s:property value="#art.content"/>" method = "post">
-              						<div class = "button_wrapper">
+              					<form class = "left" action = "updateArticle.jsp?username=<s:property value="#art.username"/>&id=<s:property value="#art.id"/>&title=<s:property value="#art.title"/>&content=<s:property value="#art.content"/>" method = "post">
+              						<div class = "left">
 										<input name = "修改" type = "submit" class="button" value = "修改" />
 									</div>
               					</form>
+              					<form class = "right" action = "deleteArticle.action?username=<s:property value="#art.username"/>&id=<s:property value="#art.id"/>" method = "post">
+                                    <div class = "right">
+                                        <input name = "删除" type = "submit" class="button" value = "删除" />
+                                    </div>
+                                </form>
             				</div>
             				<div class="comment alt">
               					<div class="meta"><span class="datetime">

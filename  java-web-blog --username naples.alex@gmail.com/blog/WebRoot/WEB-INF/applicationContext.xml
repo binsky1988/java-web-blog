@@ -211,4 +211,11 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 			<ref bean="articleService"/>
 		</property>
 	</bean>
+	
+	<!-- DeleteArticle Action -->
+	<bean id="deleteArticle" class="com.blog.action.DeleteArticle" scope="prototype">
+		<property name="articleService">
+			<ref bean="articleService"/>
+		</property>
+	</bean>
 </beans>
