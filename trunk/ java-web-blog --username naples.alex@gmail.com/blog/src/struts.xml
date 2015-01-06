@@ -51,7 +51,10 @@
 		<action name="updateArticle" class="updateArticle">
 			<result name="success">/success.jsp</result>
 			<result name="error">/error.jsp</result>
-			<result name="input">/register.jsp</result>
+		</action>
+		
+		<action name="deleteArticle" class="deleteArticle">
+			<result name="success" type="chain">showUserAllArticle</result>
 		</action>
 		
 		<action name = "showAllArticle" class = "showAllArticle">

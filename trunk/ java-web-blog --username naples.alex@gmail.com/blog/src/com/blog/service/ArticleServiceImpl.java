@@ -77,4 +77,9 @@ public class ArticleServiceImpl implements ArticleService {
     public Article updateArticle(String username, int id) {
         return articleDAO.updateArticle(username, id);
     }
+    
+    //и╬ЁЩндуб
+    public void delArticle(String username, int id) {
+        articleDAO.delArticle(username, id);
+    }
 }

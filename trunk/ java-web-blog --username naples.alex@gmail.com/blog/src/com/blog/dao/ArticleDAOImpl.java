@@ -22,7 +22,7 @@ public class ArticleDAOImpl extends HibernateDaoSupport implements ArticleDAO {
     
     //定义一个queryUserAll,用来取出用户的所有文章
     public List<Article> queryUserAll(String username) {
-        List find = this.getHibernateTemplate().find("select art from Article art where art.username = ?", username);
+        List find = this.getHibernateTemplate().find("select art from Article art where art.username = ? order by art.date desc", username);
         List<Article> list = find;
         return list;
     }
@@ -96,5 +96,33 @@ public class ArticleDAOImpl extends HibernateDaoSupport implements ArticleDAO {
         }
         
         return article;
+    }
+    
+    //删除文章
+    public void delArticle(String username, int id) {
+        List list = this.getHibernateTemplate().executeFind(new HibernateCallback() {
+            public Object doInHibernate(Session session) throws HibernateException, SQLException {
+                //先删除点击记录
+                Query delViewRate = session.createQuery("delete ViewRate as vr where vr.AId = ?");
+                delViewRate.setInteger(0, id);
+                delViewRate.executeUpdate();
+                session.beginTransaction().commit();
+                
+                //然后删除文章对应的评论
+                Query delCritique = session.createQuery("delete Critique as ctq where ctq.AId = ?");
+                delCritique.setInteger(0, id);
+                delCritique.executeUpdate();
+                session.beginTransaction().commit();
+                
+                //再删除文章本身
+                Query delArticle = session.createQuery("delete Article as art where art.username = ? and art.id = ?");
+                delArticle.setParameter(0, username);
+                delArticle.setInteger(1, id);
+                delArticle.executeUpdate();
+                session.beginTransaction().commit();
+                
+                return null;
+            }
+        });
     }
 }

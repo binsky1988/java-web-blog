@@ -28,4 +28,7 @@ public interface ArticleService {
     
     //更新文章
     public Article updateArticle(String username, int id);
+    
+    //删除文章
+    public void delArticle(String username, int id);
 }

@@ -5,12 +5,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>我的文章</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="../css/main.css" media="all" />
-<!--[if IE 6]><link type="text/css" rel="stylesheet" href="css/ie6.css" media="all" /><![endif]-->
-<script type="text/javascript" src="../js/mootools.js"></script>
-<script type="text/javascript" src="../js/site.js"></script>
+	<title>我的文章</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../css/main.css" media="all" />
+	<!--[if IE 6]><link type="text/css" rel="stylesheet" href="css/ie6.css" media="all" /><![endif]-->
+	<script type="text/javascript" src="../js/mootools.js"></script>
+	<script type="text/javascript" src="../js/site.js"></script>
+	<script type="text/javascript" src="../js/checkSubmit.js"> </script> 
 </head>
 <body>
 <div id="wrapper">
